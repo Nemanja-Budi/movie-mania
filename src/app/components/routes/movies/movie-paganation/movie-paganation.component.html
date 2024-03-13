@@ -1,0 +1,20 @@
+<div class="grid grid-cols-2 p-3">
+    <ul class="flex gap-5 justify-center">
+        <li><a class="text-blue-500 ">{{'<<'}} Prev</a>
+        </li>
+        <li><a class="text-blue-500 ">Next >> </a></li>
+    </ul>
+    <div class="flex justify-center  items-center gap-1">
+        <div>
+            <label for="sorting">Sort by:</label>
+            <select name="sorting" id="sorting" class="border borodeb-black" #sortSelect
+                (change)="onGetSortSelect(sortSelect.value)">
+                <option value="rating">Rating</option>
+                <option value="year">Year</option>
+            </select>
+        </div>
+        <div>
+            <button (click)="onGetButon()" class="px-1 py-1 bg-slate-300 flex ">↑</button>
+        </div>
+    </div>
+</div>
