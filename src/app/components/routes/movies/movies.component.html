@@ -1,8 +1,8 @@
 <div class="grid grid-rows-[auto,1fr] h-full">
     <div>
-        <app-movie-paganation></app-movie-paganation>
+        <app-movie-paganation [maxPages]="maxPages"></app-movie-paganation>
     </div>
     <div class="flex flex-col gap-3 p-3">
-        <app-movie-item *ngFor="let movie of movies | async" [movie]="movie"></app-movie-item>
+        <app-movie-item (deleteMovie)="onDeleteMovie($event)" *ngFor="let movie of movies | async" [movie]="movie"></app-movie-item>
     </div>
 </div>

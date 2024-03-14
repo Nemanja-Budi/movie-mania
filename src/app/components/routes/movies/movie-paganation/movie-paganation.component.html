@@ -1,9 +1,8 @@
 <div class="grid grid-cols-2 p-3">
-    <ul class="flex gap-5 justify-center">
-        <li><a class="text-blue-500 ">{{'<<'}} Prev</a>
-        </li>
-        <li><a class="text-blue-500 ">Next >> </a></li>
-    </ul>
+    <div class="flex gap-5 justify-center">
+        <button *ngIf="currentPage > 1" [disabled]="currentPage <= 1" (click)="onGetPage(-1)" class="text-blue-500 ">{{'<<'}} Prev</button>
+        <button *ngIf="currentPage < maxPages" [disabled]="currentPage == maxPages" (click)="onGetPage(1)" class="text-blue-500 ">Next >> </button>
+    </div>
     <div class="flex justify-center  items-center gap-1">
         <div>
             <label for="sorting">Sort by:</label>

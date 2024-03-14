@@ -1,1 +1,112 @@
-<p>add-movie works!</p>
+<div class="p-5">
+    <form [formGroup]="movieForm" (ngSubmit)="onSubmit()" class="px-2 w-[70%] mx-auto flex flex-col gap-2">
+        <div class="grid grid-cols-4 items-center">
+            <label for="name" class="text-lg">Name</label>
+            <input 
+                class="border-2 p-2 rounded-md col-span-3" 
+                type="text" 
+                id="name" 
+                formControlName="name" 
+                required 
+                autocomplete="off">
+        </div>
+        <div class="grid grid-cols-4 items-center">
+            <label for="description" class="text-lg">Description</label>
+                <textarea 
+                    id="description" 
+                    cols="30" 
+                    rows="3" 
+                    class=" border-2 p-2 rounded-md col-span-3"
+                    formControlName="description"
+                    required
+                    autocomplete="off">
+                </textarea>
+        </div>
+        <div class="grid grid-cols-4 items-center">
+            <label for="year" class="text-lg">Year</label>
+            <input 
+                class=" border-2 p-2 rounded-md col-span-3" 
+                type="text" 
+                id="year" 
+                formControlName="year" 
+                required 
+                autocomplete="off">
+        </div>
+        <div class="grid grid-cols-4 items-center">
+            <label for="rating" class="text-lg">Rating</label>
+            <input 
+                class=" border-2 p-2 rounded-md col-span-3" 
+                type="text" 
+                id="rating" 
+                formControlName="rating" 
+                required 
+                autocomplete="off">
+        </div>
+        <div class="grid grid-cols-4 items-center">
+            <label for="duration" class="text-lg">Duration</label>
+            <input 
+                class=" border-2 p-2 rounded-md col-span-3" 
+                type="text" 
+                id="duration" 
+                formControlName="duration" 
+                required 
+                autocomplete="off">
+        </div>
+        <div class="grid grid-cols-4 items-center">
+            <label for="director" class="text-lg">Director</label>
+            <input 
+                class=" border-2 p-2 rounded-md col-span-3" 
+                type="text" 
+                id="director" 
+                formControlName="director" 
+                required 
+                autocomplete="off">
+        </div>
+        <div class="grid grid-cols-4 gap-3 items-center">
+            <div class="grid grid-cols-3 col-span-3 w-full items-center">
+                <label for="genre" class="text-lg">Genre</label>
+                <select 
+                    formControlName="genre" 
+                    id="genre"
+                    class="w-full border-2 p-2 rounded-md col-span-2">
+                    <option value="{{genre.name}}" *ngFor="let genre of genres | async">{{genre.name}}</option>
+                </select>
+            </div>
+            <div class="flex justify-end pr-3">
+                <button type="button" (click)="showGenreForm()" class="bg-blue-500 px-4 py-2 rounded-md">+</button>
+            </div>
+        </div>
+        <div class="flex">
+            <button 
+                class="text-white px-5 py-2 rounded-md bg-blue-500" 
+                type="submit"
+                [disabled]="!movieForm.valid"
+                [ngStyle]="{'background-color':  !movieForm.valid ? '#93C5FD' : '#3B82F6' }">
+                Save
+            </button>
+        </div>
+    </form>
+
+    <div class="px-2 w-[70%] mx-auto" *ngIf="isShown">
+        <form [formGroup]="genreForm" (ngSubmit)="onAddGenre()" class="grid grid-cols-4 items-center gap-5">
+            <div class="col-span-3 grid grid-cols-3 items-center">
+                <label for="name">Enter new genre:</label>
+                <input 
+                    id="name"
+                    type="text" 
+                    formControlName="name"
+                    class="w-full border-2 p-2 rounded-md col-span-2"
+                    autocomplete="off"
+                    required>
+            </div>
+            <div class="w-full">
+                <button 
+                    class="bg-blue-500 px-3 py-2 w-full text-white rounded-md"
+                    [disabled]="!genreForm.valid"
+                    [ngStyle]="{'background-color':  !genreForm.valid ? '#93C5FD' : '#3B82F6' }">
+                    Add new Genre
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

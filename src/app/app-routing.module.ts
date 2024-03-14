@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'movies', component: MoviesComponent },
   { path: 'home', component: HomeComponent },
   { path: 'add-movie', component: AddMovieComponent },
+  { path: 'edit-movie/:id', component: AddMovieComponent },
   // { path: 'train-detail/:id', component: TrainItemComponent },
   // { path: 'tickets-buy/:id', component: TicketFormComponent},
   // { path: "person/:personal_number", component: PersionDetailComponent },

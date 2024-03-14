@@ -1,7 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { MovieService } from 'src/app/services/movie.service';
 
 export type Sorting = {
+  page: number;
+  pageSize: number;
   sort: string;
   sortDirection: string;
 }
@@ -12,18 +14,30 @@ export type Sorting = {
   styleUrls: ['./movie-paganation.component.css']
 })
 export class MoviePaganationComponent {
-  sortDirection: string = 'asc'
-  sort: string = 'rating'
-
   movieService: MovieService = inject(MovieService);
+  @Input() maxPages: number = 0;
+  currentPage: number = 1;
+
+  onGetPage(pages: number): void {
+    this.currentPage += pages;
+    this.movieService.selectSubject.next({
+      ...this.movieService.selectSubject.value,
+      page: this.movieService.selectSubject.value.page + pages
+    })
+  }
 
   onGetSortSelect(sortSelect: string): void {
-    this.sort = sortSelect;
-    this.movieService.selectSubject.next({ sort: sortSelect, sortDirection: this.sortDirection });
+    this.movieService.selectSubject.next({
+      ...this.movieService.selectSubject.value,
+      sort: sortSelect
+    });
   }
 
   onGetButon(): void {
-    this.sortDirection == 'asc' ? this.sortDirection = 'desc' : this.sortDirection = 'asc';
-    this.movieService.selectSubject.next({ sort: this.sort, sortDirection: this.sortDirection });
+    this.movieService.selectSubject.next({
+      ...this.movieService.selectSubject.value,
+      sortDirection: this.movieService.selectSubject.value.sortDirection === 'asc' ? 'desc' : 'asc'
+    });
   }
+ 
 }

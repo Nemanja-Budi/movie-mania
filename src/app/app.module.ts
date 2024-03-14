@@ -10,7 +10,7 @@ import { AddMovieComponent } from './components/routes/add-movie/add-movie.compo
 import { MovieItemComponent } from './components/routes/movies/movie-item/movie-item.component';
 import { MoviePaganationComponent } from './components/routes/movies/movie-paganation/movie-paganation.component';
 import { NavbarComponent } from './components/core/navbar/navbar.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
